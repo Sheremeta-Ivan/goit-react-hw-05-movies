@@ -22,7 +22,9 @@ const Home = () => {
 
   return (
     <div>
-      <h2>Trending Movies</h2>
+      <h2 className="mb-10 mt-10 text-4xl font-bold tracking-tight text-center text-white">
+        Trending Movies
+      </h2>
       <SkeletonTheme baseColor="#dddddd" highlightColor="#a5a5a5">
         {trendingMovies.length === 0 ? (
           <Skeleton

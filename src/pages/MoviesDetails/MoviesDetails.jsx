@@ -56,7 +56,7 @@ const MoviesDetails = () => {
   const roundedPopularity = Math.round(movieDetails.vote_average * 10);
 
   return (
-    <div>
+    <div className="container ml-auto mr-auto pl-6 pr-6">
       <Link to={backLinkHref.current}>
         <Button text="⬅️ Go back" />
       </Link>

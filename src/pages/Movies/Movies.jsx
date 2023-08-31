@@ -30,16 +30,22 @@ const Movies = () => {
     search();
   }, [movieName]);
   return (
-    <div>
+    <div className="h-full">
       <SkeletonTheme baseColor="#dddddd" highlightColor="#a5a5a5">
         <Form value={movieName} onChange={updateQueryString} />
         {loading ? (
           <Skeleton
             count={15}
-            style={{ height: 30, width: 300, marginTop: 15 }}
+            style={{
+              height: 30,
+              width: 300,
+              marginTop: 15,
+            }}
           />
         ) : searchResults.length === 0 && movieName ? (
-          <h2>🔎 Nothing found</h2>
+          <h2 className="mb-10 mt-10 text-3xl text-center font-thin tracking-tight text-white">
+            🔎 Nothing found
+          </h2>
         ) : (
           <MovieList films={searchResults} />
         )}
