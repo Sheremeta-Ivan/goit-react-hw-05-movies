@@ -26,13 +26,13 @@ const Layout = () => {
             <NavLink
               to="/"
               end
-              className="mr-[80px] text-white [&.active]:text-acrive-link"
+              className="mr-[80px] text-white [&.active]:text-active-link"
             >
               Home
             </NavLink>
             <NavLink
               to="/movies"
-              className="text-white [&.active]:text-acrive-link"
+              className="text-white [&.active]:text-active-link"
             >
               Movie
             </NavLink>
@@ -44,14 +44,14 @@ const Layout = () => {
           <Outlet />
         </Suspense>
       </div>
-      <footer>
-        <p className="mt-10 text-xl font-thin tracking-tight text-center text-footer ">
+      <footer className="bg-header-color">
+        <p className=" text-xl font-thin tracking-tight text-center text-footer py-6">
           &copy; {new Date().getFullYear()}
           <a
             href="https://www.themoviedb.org/"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-2 mr-2"
+            className="ml-2 mr-2 text-active-link"
           >
             TMDB Movie Search
           </a>

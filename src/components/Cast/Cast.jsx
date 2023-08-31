@@ -23,10 +23,15 @@ const Cast = () => {
     <div>
       {cast.length !== 0 && (
         <div>
-          <h2>Movie Cast</h2>
-          <ul>
+          <h2 className="my-4 text-4xl font-bold tracking-tight text-center text-white">
+            Movie Cast
+          </h2>
+          <ul className="container mx-auto my-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-6  gap-8  px-6">
             {cast.map(actor => (
-              <li key={actor.id}>
+              <li
+                key={actor.id}
+                className="max-w-xs mx-auto bg-card border-card  rounded-lg ease-in duration-300 shadow  "
+              >
                 <img
                   width="200px"
                   height="300px"
@@ -36,8 +41,11 @@ const Cast = () => {
                       : `${noimage}`
                   }
                   alt={actor.original_name}
+                  className="rounded-t-lg grow"
                 />
-                <p>{actor.name}</p>
+                <p className=" text-m font-medium tracking-tight text-white text-center truncate  px-2">
+                  {actor.name}
+                </p>
               </li>
             ))}
           </ul>

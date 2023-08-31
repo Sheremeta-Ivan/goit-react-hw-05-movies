@@ -21,12 +21,18 @@ const Reviews = () => {
     <div>
       {reviews.length !== 0 && (
         <div>
-          <h2>Movie Reviews</h2>
+          <h2 className="my-4 text-4xl font-bold tracking-tight text-center text-white">
+            Movie Reviews
+          </h2>
           <ul>
             {reviews.map(review => (
               <li key={review.id}>
-                <p>{review.author}</p>
-                <p>{review.content}</p>
+                <p className="mb-1 mt-3 text-2xl font-semibold tracking-tight text-left text-white">
+                  {review.author}
+                </p>
+                <p className="mb-3 mt-3 text-l font-normal tracking-tight text-slate-500 ">
+                  {review.content}
+                </p>
               </li>
             ))}
           </ul>

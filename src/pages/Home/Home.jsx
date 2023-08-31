@@ -29,7 +29,13 @@ const Home = () => {
         {trendingMovies.length === 0 ? (
           <Skeleton
             count={15}
-            style={{ height: 30, width: 300, marginTop: 15 }}
+            style={{
+              height: 30,
+              width: 300,
+              marginTop: 15,
+              marginRight: 'auto',
+              marginLeft: 'auto',
+            }}
           />
         ) : (
           <MovieList films={trendingMovies} />

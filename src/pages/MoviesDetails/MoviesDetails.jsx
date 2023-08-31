@@ -61,41 +61,61 @@ const MoviesDetails = () => {
         <Button text="⬅️ Go back" />
       </Link>
       <div backdrop={movieDetails.backdrop_path}>
-        {/* right side */}
-        <div>
-          <h1>{movieDetails.title}</h1>
-          <h3>User score: {roundedPopularity}%</h3>
-          <h2>Overview</h2>
-          <p>{movieDetails.overview}</p>
-          <h2>Genres</h2>
-          <p>
-            {movieDetails.genres.map(genre => (
-              <span key={genre.id}> {genre.name}</span>
-            ))}
-          </p>
-          <h2>Production companies</h2>
-          <div>{productionCompaniesList}</div>
+        <div className="flex gap-8 flex-col-reverse md:flex-row mb-10">
+          <div className="grow ">
+            <h1 className="mb-3 mt-3 text-4xl font-bold tracking-tight text-right text-white">
+              {movieDetails.title}
+            </h1>
+            <h3 className="mb-3 mt-3 text-xl font-semibold tracking-tight text-right text-slate-500">
+              User score: {roundedPopularity}%
+            </h3>
+            <h2 className="mb-1 mt-3 text-2xl font-semibold tracking-tight text-left text-white">
+              Overview:
+            </h2>
+            <p className="mb-3 mt-3 text-l font-normal tracking-tight text-slate-500 max-w-[500px]">
+              {movieDetails.overview}
+            </p>
+            <h2 className="mb-1 mt-3 text-2xl font-semibold tracking-tight text-left text-white">
+              Genres:
+            </h2>
+            <p className="flex gap-5 mb-3 mt-3 text-l font-normal tracking-tight text-slate-500 max-w-[500px]">
+              {movieDetails.genres.map(genre => (
+                <span key={genre.id}> #{genre.name}</span>
+              ))}
+            </p>
+            <h2 className="mb-1 mt-3 text-2xl font-semibold tracking-tight text-center text-white">
+              Production companies
+            </h2>
+            <ul className="flex gap-3 flex-nowrap">
+              {productionCompaniesList}
+            </ul>
+          </div>
+
+          <div>
+            <img
+              src={
+                movieDetails.poster_path
+                  ? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
+                  : `${noimage}`
+              }
+              alt={movieDetails.title}
+              className="rounded-2xl"
+            />
+          </div>
         </div>
-        {/* img container */}
-        <div>
-          <img
-            src={
-              movieDetails.poster_path
-                ? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
-                : `${noimage}`
-            }
-            alt={movieDetails.title}
-          />
+        <hr className="w-48 h-1 mx-auto my-2 bg-active-link border-0 rounded md:my-4 " />
+        <div className="text-center">
+          <h3 className="mb-3 mt-3 text-4xl font-bold tracking-tight text-center text-white">
+            Additional information
+          </h3>
+          <Link to="cast" className="mr-[20px]">
+            <Button text="Cast" />
+          </Link>
+          <Link to="reviews">
+            <Button text="Reviews" />
+          </Link>
         </div>
-        <hr />
-        <h3>Additional information</h3>
-        <Link to="cast">
-          <Button text="Cast" />
-        </Link>
-        <Link to="reviews">
-          <Button text="Reviews" />
-        </Link>
-        <hr />
+        <hr className="w-48 h-1 mx-auto my-2 bg-active-link border-0 rounded md:my-4 " />
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>

@@ -4,5 +4,14 @@
 @tailwind utilities;
 
 img {
+  display: block;
   width: 100%;
+}
+
+ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+li {
+  list-style-type: none;
 }
