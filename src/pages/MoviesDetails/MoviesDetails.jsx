@@ -6,6 +6,7 @@ import Loader from 'components/Loader/Loader';
 import Button from 'components/Button/Button';
 import noimage from 'components/images/placeholder.png';
 import { AiFillStar } from 'react-icons/ai';
+import YoutubeTrailer from 'components/YoutubeTrailer/YoutubeTrailer';
 
 const MoviesDetails = () => {
   //hooks
@@ -75,13 +76,6 @@ const MoviesDetails = () => {
       <Link to={backLinkHref.current}>
         <Button text="⬅️ Go back" />
       </Link>
-      <a
-        href={`https://www.youtube.com/watch?v=${video}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Link
-      </a>
       <div backdrop={movieDetails.backdrop_path}>
         <div className="flex gap-8 flex-col-reverse md:flex-row mb-10">
           <div className="grow ">
@@ -118,9 +112,15 @@ const MoviesDetails = () => {
             <ul className="flex gap-3 flex-nowrap">
               {productionCompaniesList}
             </ul>
+            <h2 className="my-5 text-2xl font-semibold tracking-tight text-center text-slate-500">
+              Trailer
+            </h2>
+            <div className="flex justify-center my-5">
+              <YoutubeTrailer videoId={video} />
+            </div>
           </div>
 
-          <div className="text-center">
+          <div className="text-center md:my-[100px]">
             <img
               src={
                 movieDetails.poster_path

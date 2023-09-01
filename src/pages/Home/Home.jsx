@@ -13,7 +13,7 @@ const Home = () => {
     const fetchFilm = async () => {
       try {
         const movies = await fetchTrendingMovies(page);
-        setTrendingMovies([...trendingMovies, ...movies.results]);
+        setTrendingMovies(prevMovies => [...prevMovies, ...movies.results]);
       } catch (error) {
         console.log(error);
       }
@@ -22,7 +22,7 @@ const Home = () => {
   }, [page]);
 
   const loadMoreMovies = () => {
-    setPage(page + 1);
+    setPage(() => page + 1);
   };
 
   return (
