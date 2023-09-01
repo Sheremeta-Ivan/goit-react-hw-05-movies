@@ -18,6 +18,11 @@ export const fetchTrendingMovies = async page => {
   return response.data;
 };
 
+export const fetchVideoMovie = async movieId => {
+  const response = await axios.get(`/movie/${movieId}/videos?`);
+  return response.data.results;
+};
+
 export const fetchMovieDetails = async movieId => {
   const response = await axios.get(`/movie/${movieId}`);
   return response.data;

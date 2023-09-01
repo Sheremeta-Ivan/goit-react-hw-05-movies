@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, Suspense } from 'react';
 import { useLocation, useParams, Link, Outlet } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/TmdbAPI';
+import { fetchVideoMovie } from 'services/TmdbAPI';
 import Loader from 'components/Loader/Loader';
 import Button from 'components/Button/Button';
 import noimage from 'components/images/placeholder.png';
@@ -12,6 +13,7 @@ const MoviesDetails = () => {
   const [movieDetails, setMovieDetails] = useState(null);
   const location = useLocation();
   const backLinkHref = useRef(location.state?.from || '/');
+  const [video, setVideo] = useState('');
 
   //get data from api about film details
   useEffect(() => {
@@ -23,7 +25,18 @@ const MoviesDetails = () => {
         console.error(error);
       }
     };
-
+    const movieVideo = async () => {
+      try {
+        const results = await fetchVideoMovie(movieId);
+        const trailer = results.find(
+          ({ site, type }) => site === 'YouTube' && type === 'Trailer'
+        );
+        setVideo(trailer ? trailer.key : '');
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    movieVideo();
     movieDetails();
   }, [movieId]);
 
@@ -62,6 +75,13 @@ const MoviesDetails = () => {
       <Link to={backLinkHref.current}>
         <Button text="⬅️ Go back" />
       </Link>
+      <a
+        href={`https://www.youtube.com/watch?v=${video}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Link
+      </a>
       <div backdrop={movieDetails.backdrop_path}>
         <div className="flex gap-8 flex-col-reverse md:flex-row mb-10">
           <div className="grow ">
@@ -122,7 +142,7 @@ const MoviesDetails = () => {
         </div>
         <hr className="w-48 h-1 mx-auto my-2 bg-active-link border-0 rounded md:my-4 " />
         <div className="text-center">
-          <h3 className="mb-3 mt-3 text-2xl md:text-4xl font-bold tracking-tight text-center text-white">
+          <h3 className="mb-3 mt-3 text-4xl font-bold tracking-tight text-center text-white">
             Additional information
           </h3>
           <Link to="cast" className="mr-[20px]">
