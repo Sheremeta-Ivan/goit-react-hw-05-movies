@@ -18,6 +18,7 @@ const Cast = () => {
     };
     movieCast();
   }, [movieId]);
+
   return (
     <div>
       {cast.length !== 0 && (
@@ -29,7 +30,7 @@ const Cast = () => {
             {cast.map(actor => (
               <li
                 key={actor.id}
-                className="max-w-xs mx-auto bg-card border-card  rounded-lg ease-in duration-300 shadow  "
+                className="max-w-xs mx-auto bg-card border-card  rounded-lg ease-in duration-300 shadow"
               >
                 <img
                   width="200px"

@@ -100,7 +100,7 @@ const MoviesDetails = () => {
             </ul>
           </div>
 
-          <div>
+          <div className="text-center">
             <img
               src={
                 movieDetails.poster_path
@@ -110,11 +110,19 @@ const MoviesDetails = () => {
               alt={movieDetails.title}
               className="rounded-2xl"
             />
+            <a
+              href={movieDetails.homepage}
+              rel="noreferrer"
+              target="_blank"
+              className=" block text-white bg-card hover:bg-header-color focus:ring-4 font-semibold rounded-lg text-l px-5 py-2.5 my-5 focus:outline-none"
+            >
+              Link to film
+            </a>
           </div>
         </div>
         <hr className="w-48 h-1 mx-auto my-2 bg-active-link border-0 rounded md:my-4 " />
         <div className="text-center">
-          <h3 className="mb-3 mt-3 text-4xl font-bold tracking-tight text-center text-white">
+          <h3 className="mb-3 mt-3 text-2xl md:text-4xl font-bold tracking-tight text-center text-white">
             Additional information
           </h3>
           <Link to="cast" className="mr-[20px]">
