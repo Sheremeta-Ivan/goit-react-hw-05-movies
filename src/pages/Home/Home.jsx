@@ -19,6 +19,7 @@ const Home = () => {
     };
     fetchFilm();
   }, []);
+  console.log(trendingMovies);
 
   return (
     <div>

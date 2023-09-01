@@ -39,7 +39,9 @@ const Reviews = () => {
         </div>
       )}
       {reviews.length === 0 && (
-        <div>We don't have any reviews for this movie.</div>
+        <p className="my-4 text-2xl font-semibold tracking-tight text-white text-center">
+          We don't have any reviews for this movie :(
+        </p>
       )}
     </div>
   );

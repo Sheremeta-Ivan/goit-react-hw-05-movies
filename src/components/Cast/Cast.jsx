@@ -12,7 +12,6 @@ const Cast = () => {
       try {
         const response = await fetchMovieCast(movieId);
         setCast(response);
-        console.log(response);
       } catch (error) {
         console.error(error);
       }
@@ -51,7 +50,11 @@ const Cast = () => {
           </ul>
         </div>
       )}
-      {cast.length === 0 && <p>We don't have any cast for this movie.</p>}
+      {cast.length === 0 && (
+        <p className="my-4 text-2xl font-semibold tracking-tight text-white text-center">
+          We don't have any cast for this movie :(
+        </p>
+      )}
     </div>
   );
 };

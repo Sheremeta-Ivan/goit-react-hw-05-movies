@@ -4,6 +4,7 @@ import { fetchMovieDetails } from 'services/TmdbAPI';
 import Loader from 'components/Loader/Loader';
 import Button from 'components/Button/Button';
 import noimage from 'components/images/placeholder.png';
+import { AiFillStar } from 'react-icons/ai';
 
 const MoviesDetails = () => {
   //hooks
@@ -53,7 +54,8 @@ const MoviesDetails = () => {
         </li>
       )
   );
-  const roundedPopularity = Math.round(movieDetails.vote_average * 10);
+  const movieRating = movieDetails.vote_average;
+  const releaseDate = movieDetails.release_date;
 
   return (
     <div className="container ml-auto mr-auto pl-6 pr-6">
@@ -66,9 +68,16 @@ const MoviesDetails = () => {
             <h1 className="mb-3 mt-3 text-4xl font-bold tracking-tight text-right text-white">
               {movieDetails.title}
             </h1>
-            <h3 className="mb-3 mt-3 text-xl font-semibold tracking-tight text-right text-slate-500">
-              User score: {roundedPopularity}%
+            <h3 className="mb-3 mt-3 text-2xl font-semibold tracking-tight text-right text-slate-500">
+              Released: <span className="text-gray-300">{releaseDate}</span>
             </h3>
+            <h3 className="mb-3 mt-3 text-2xl font-semibold tracking-tight text-right text-slate-500">
+              User score:
+            </h3>
+            <div className="flex flex-row justify-end items-center text-right text-gray-300">
+              <AiFillStar className="text-3xl mr-2" />
+              <p className="text-2xl font-bold">{movieRating.toFixed(1)}</p>
+            </div>
             <h2 className="mb-1 mt-3 text-2xl font-semibold tracking-tight text-left text-white">
               Overview:
             </h2>
