@@ -10,11 +10,11 @@ axios.defaults.params = {
   language: 'en-US',
 };
 
-export const fetchTrendingMovies = async page => {
+export const fetchTrendingMovies = async (page, { signal }) => {
   const params = {
     page,
   };
-  const response = await axios.get(`trending/movie/day`, { params });
+  const response = await axios.get(`trending/movie/day`, { params, signal });
   return response.data;
 };
 
@@ -28,8 +28,10 @@ export const fetchMovieDetails = async movieId => {
   return response.data;
 };
 
-export const handleSearch = async movieName => {
-  const response = await axios.get(`/search/movie?query=${movieName}`);
+export const handleSearch = async (movieName, { signal }) => {
+  const response = await axios.get(`/search/movie?query=${movieName}`, {
+    signal,
+  });
   return response.data.results;
 };
 

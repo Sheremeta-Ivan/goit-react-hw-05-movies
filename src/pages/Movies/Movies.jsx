@@ -16,10 +16,11 @@ const Movies = () => {
     setSearchParams(nextParams);
   };
   useEffect(() => {
+    const contr = new AbortController();
     const search = async () => {
       try {
         setLoading(true);
-        const movies = await handleSearch(movieName);
+        const movies = await handleSearch(movieName, { signal: contr.signal });
         setSearchResults(movies);
       } catch (error) {
         console.error(error);
@@ -28,6 +29,9 @@ const Movies = () => {
       }
     };
     search();
+    return () => {
+      contr.abort();
+    };
   }, [movieName]);
   return (
     <div className="h-full">

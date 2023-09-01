@@ -4,21 +4,31 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 import MovieList from 'components/MovieList/MovieList';
 import { fetchTrendingMovies } from 'services/TmdbAPI';
+import { isCancel } from 'axios';
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
+    const controller = new AbortController();
     const fetchFilm = async () => {
       try {
-        const movies = await fetchTrendingMovies(page);
+        const movies = await fetchTrendingMovies(page, {
+          signal: controller.signal,
+        });
         setTrendingMovies(prevMovies => [...prevMovies, ...movies.results]);
       } catch (error) {
+        if (isCancel(error)) {
+          return;
+        }
         console.log(error);
       }
     };
     fetchFilm();
+    return () => {
+      controller.abort();
+    };
   }, [page]);
 
   const loadMoreMovies = () => {

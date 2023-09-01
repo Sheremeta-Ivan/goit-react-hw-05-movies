@@ -13,7 +13,7 @@ const MoviesDetails = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
   const location = useLocation();
-  const backLinkHref = useRef(location.state?.from || '/');
+  const backLinkHref = useRef(location.state?.from ?? '/');
   const [video, setVideo] = useState('');
 
   //get data from api about film details
@@ -73,8 +73,11 @@ const MoviesDetails = () => {
 
   return (
     <div className="container ml-auto mr-auto pl-6 pr-6">
-      <Link to={backLinkHref.current}>
-        <Button text="⬅️ Go back" />
+      <Link
+        to={backLinkHref.current}
+        className="block text-white bg-card hover:bg-header-color  font-bold rounded-lg text-l px-5 py-2.5 my-6 w-[140px]"
+      >
+        ⬅️ Go back
       </Link>
       <div backdrop={movieDetails.backdrop_path}>
         <div className="flex gap-8 flex-col-reverse md:flex-row mb-10">

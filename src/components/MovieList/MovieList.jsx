@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import noimage from '../images/placeholder.png';
 const MovieList = ({ films }) => {
+  const location = useLocation();
   return (
     <ul className="container mx-auto grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4  gap-4  my-8 px-6">
       {films.map(movie => (
@@ -10,7 +11,11 @@ const MovieList = ({ films }) => {
           key={movie.id}
           className="max-w-[290px] 2xl:max-w-[340px] mx-auto bg-card border border-card rounded-lg ease-in duration-300 shadow hover:scale-105 "
         >
-          <Link to={`/movies/${movie.id}`} className="flex flex-col">
+          <Link
+            to={`/movies/${movie.id}`}
+            className="flex flex-col"
+            state={{ from: location }}
+          >
             <img
               src={
                 movie.poster_path
